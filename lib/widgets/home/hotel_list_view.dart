@@ -1,5 +1,6 @@
 import 'package:hotel_app/model/favorites.dart';
 import 'package:hotel_app/model/hotel.dart';
+import 'package:hotel_app/model/PropertyProvider.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

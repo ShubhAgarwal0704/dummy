@@ -1,4 +1,5 @@
 import 'package:hotel_app/model/hotel.dart';
+import 'package:hotel_app/model/PropertyProvider.dart';
 import 'package:hotel_app/screens/hotel_detail_screen.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
 
@@ -19,6 +20,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     with TickerProviderStateMixin {
   AnimationController? animationController;
   List<Hotel> hotelList = [];
+  // List<PropertyModel> propertyList = [];
   final ScrollController _scrollController = ScrollController();
 
   DateTime startDate = DateTime.now();
@@ -30,6 +32,8 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
         duration: const Duration(milliseconds: 1000), vsync: this);
 
     hotelList = Provider.of<Cart>(context, listen: false).getHotels();
+    // propertyList = Provider.of<Property>(context, listen: false).getProperty();
+
     super.initState();
   }
 
@@ -81,6 +85,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                               pinned: true,
                               floating: true,
                               delegate: ContestTabHeader(
+                                // getFilterBarUI(count: propertyList.length)
                                 getFilterBarUI(count: hotelList.length),
                               ),
                             ),
@@ -92,6 +97,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                               .background,
                           child: ListView.builder(
                             itemCount: hotelList.length,
+                            // itemCount: propertyList.length,
                             padding: const EdgeInsets.only(top: 8),
                             scrollDirection: Axis.vertical,
                             itemBuilder: (BuildContext context, int index) {
@@ -157,10 +163,12 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                 } else {
                   return ListView.builder(
                     itemCount: hotelList.length,
+                    // itemCount: propertyList.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
                       final int count =
                           hotelList.length > 10 ? 10 : hotelList.length;
+                      // propertyList.length > 10 ? 10 : propertyList.length;
                       final Animation<double> animation =
                           Tween<double>(begin: 0.0, end: 1.0).animate(
                               CurvedAnimation(
@@ -189,7 +197,9 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
   Widget getHotelViewList() {
     final List<Widget> hotelListViews = <Widget>[];
     for (int i = 0; i < hotelList.length; i++) {
+      // for (int i = 0; i < propertyList.length; i++) {
       final int count = hotelList.length;
+      // final int count = propertyList.length;
       final Animation<double> animation =
           Tween<double>(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
